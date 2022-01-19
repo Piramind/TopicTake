@@ -13,6 +13,7 @@ class User(models.Model):
     user_last_name = models.CharField(max_length=20)
     user_first_name = models.CharField(max_length=20)
     user_group = models.ForeignKey(StudyGroup, on_delete=models.CASCADE)
+    password = models.CharField(max_length=20)
 
     def __str__(self):
         return f"{self.user_first_name} {self.user_last_name}"
