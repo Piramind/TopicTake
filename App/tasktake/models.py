@@ -17,7 +17,7 @@ class User(models.Model):
 
     def __str__(self):
         return f"{self.user_first_name} {self.user_last_name}"
-    
+    USERNAME_FIELD = 'user_last_name'
     REQUIRED_FIELDS = []
 
 

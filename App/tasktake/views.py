@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.exceptionis import AuthentificationFailed
+from rest_framework.exceptions import AuthentificationFailed
 from .serializers import UserSerializer
 from .models import User
 import jwt, datetime
@@ -31,7 +31,7 @@ class LoginView(APIView):
 
 		payload = {
 			'id': user.id,
-			'exp': datetime.datetime.utcnow() datetime.timedata(minutes=60)
+			'exp': datetime.datetime.utcnow() + datetime.timedata(minutes=60),
 			'iat': datetime.datetime.utcnow()
 		}
 
