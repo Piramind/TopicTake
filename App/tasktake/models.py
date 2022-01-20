@@ -1,6 +1,6 @@
 from typing_extensions import Required
 from django.db import models
-
+from django.contrib.auth.models import AbstractUser
 
 class StudyGroup(models.Model):
     group_name = models.CharField(max_length=15)
@@ -9,15 +9,22 @@ class StudyGroup(models.Model):
         return f"{self.group_name}"
 
 
-class User(models.Model):
+class User(AbstractUser):
     user_last_name = models.CharField(max_length=20)
     user_first_name = models.CharField(max_length=20)
     user_group = models.ForeignKey(StudyGroup, on_delete=models.CASCADE)
     password = models.CharField(max_length=20)
+    email = models.CharField(max_length=30, unique=True)
+    username = None
+    
+
+
 
     def __str__(self):
-        return f"{self.user_first_name} {self.user_last_name}"
-    USERNAME_FIELD = 'user_last_name'
+            return f"{self.user_first_name} {self.user_last_name}"
+
+
+    USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
 

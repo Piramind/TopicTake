@@ -9,7 +9,7 @@ class UserSerializer(serializers.ModelSerializer):
 				'password': {'write-only': True}
 		}
 
-	def create(seld, validated_data):
+	def create(self, validated_data):
 		password = validated_data.pop('user_pwd', None)
 		instance = self.Meta.model(**validated_data)
 		if password is not None:

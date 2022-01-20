@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.exceptions import AuthentificationFailed
+from rest_framework.exceptions import AuthenticationFailed
 from .serializers import UserSerializer
 from .models import User
 import jwt, datetime
@@ -24,10 +24,10 @@ class LoginView(APIView):
 		user = User.objects.filter(last_name=last_name).first()
 
 		if user is None:
-			raise AuthentificationFailed('User not found!')
+			raise AuthenticationFailed('User not found!')
 
 		if not user.check_password(password):
-			raise AuthentificationFailed('Incorrect password!')
+			raise AuthenticationFailed('Incorrect password!')
 
 		payload = {
 			'id': user.id,
@@ -54,12 +54,12 @@ class UserView(APIView):
 		token = request.COOKIES.get('jwt')
 
 		if not token:
-			raise AuthentificationFailed('Unauthentificated!')
+			raise AuthenticationFailed('Unauthentificated!')
 
 		try:
 			payload = jwt.decode(token, 'secret', algorithm=['HS256'])
 		except jwt.ExpiredSignatureError:
-			raise AuthentificationFailed('Unauthentificated!')
+			raise AuthenticationFailed('Unauthentificated!')
 
 		user = User.objects.filter(id=payload['id']).first()
 		serializer = UserSerializer(user)
