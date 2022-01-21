@@ -1,4 +1,3 @@
-from typing_extensions import Required
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
@@ -16,13 +15,14 @@ class User(AbstractUser):
     password = models.CharField(max_length=20)
     email = models.CharField(max_length=30, unique=True)
     username = None
-    
 
 
 
     def __str__(self):
             return f"{self.user_first_name} {self.user_last_name}"
 
+    
+    
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
