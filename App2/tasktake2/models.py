@@ -1,7 +1,7 @@
 from django.db import models
 
 from django.db import models
-#from django.contrib.auth.models import Ab__str__actUser
+from django.contrib.auth.models import AbstractUser
 
 
 class StudyGroup(models.Model):
@@ -11,7 +11,7 @@ class StudyGroup(models.Model):
         return f"{self.group_name}"
 
 
-class User(models.Model):
+class User(AbstractUser):
     user_last_name = models.CharField(max_length=20)
     user_first_name = models.CharField(max_length=20)
     user_group = models.ForeignKey(StudyGroup, on_delete=models.CASCADE)
