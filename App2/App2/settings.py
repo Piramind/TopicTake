@@ -32,8 +32,12 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'dj_rest_auth.registration',
     'rest_framework',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    'users',
+    'tasktake2'
 ]
+
+#AUTH_USER_MODEL = 'tasktake2.CustomUser'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
