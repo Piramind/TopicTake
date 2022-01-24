@@ -4,7 +4,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 class StudyGroup(models.Model):
-    group_name = models.CharField(max_length=15)
+    group_name = models.CharField(max_length=50)
 
     def __str__(self):
         return f"{self.group_name}"
@@ -12,18 +12,17 @@ class StudyGroup(models.Model):
 
 
 class User(AbstractUser):
-    user_last_name = models.CharField(max_length=20)
-    user_first_name = models.CharField(max_length=20)
-    user_group = models.ForeignKey(StudyGroup, on_delete=models.CASCADE)
-    password = models.CharField(max_length=20)
-    email = models.CharField(max_length=30, unique=True)
+    user_last_name = models.CharField(max_length=200)
+    user_first_name = models.CharField(max_length=200)
+    user_group = models.ForeignKey(StudyGroup, on_delete=models.CASCADE, null=True, blank=True) 
+
 
     def __str__(self):
         return f"{self.user_first_name} {self.user_last_name}"
 
 
 class Discipline(models.Model):
-    discipline_name = models.CharField(max_length=40)
+    discipline_name = models.CharField(max_length=50)
 
     def __str__(self):
         return f"{self.discipline_name}"

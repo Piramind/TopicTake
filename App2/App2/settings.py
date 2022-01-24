@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'tasktake2'
 ]
 
-#AUTH_USER_MODEL = 'tasktake2.CustomUser'
+AUTH_USER_MODEL = 'tasktake2.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -76,9 +76,9 @@ WSGI_APPLICATION = 'App2.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'topictake3',
+        'NAME': 'topictake6',
         'USER': 'postgres',
-        'PASSWORD': 'sadfa',  # здесь данные пофиксятся
+        'PASSWORD': 'aaa',  # здесь данные пофиксятся
         'HOST': '127.0.0.1',
         'PORT': '5432'
     }
