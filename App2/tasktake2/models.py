@@ -39,7 +39,7 @@ class Topic(models.Model):
         return f"{self.topic_name}"
 
 
-class Lesson(models.Model):
+class Lesson(models.Model):                                                                 #вывести таблицу lesson
     lesson_date = models.DateTimeField(null=True)
     lesson_group = models.ForeignKey(StudyGroup, on_delete=models.CASCADE)
     lesson_discipline = models.ForeignKey(Discipline, on_delete=models.CASCADE)
