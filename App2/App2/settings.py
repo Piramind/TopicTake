@@ -32,7 +32,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'dj_rest_auth.registration',
     'rest_framework',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    'jwt'
 ]
 
 #AUTH_USER_MODEL = 'tasktake2.CustomUser'
@@ -76,7 +77,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'topictake3',
         'USER': 'postgres',
-        'PASSWORD': 'adfk',  # здесь данные пофиксятся
+        'PASSWORD': 'bal0nk@',  # здесь данные пофиксятся
         'HOST': '127.0.0.1',
         'PORT': '5432'
     }
@@ -125,3 +126,24 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+"""
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer'
+    ],
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser'
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny'
+    ]
+}
+"""
+REST_USE_JWT = True
+JWT_AUTH_COOKIE = 'jwt-auth'
