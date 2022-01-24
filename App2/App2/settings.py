@@ -32,9 +32,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'dj_rest_auth.registration',
     'rest_framework',
-    'rest_framework.authtoken',
-    'users',
-    'tasktake2'
+    'rest_framework.authtoken'
 ]
 
 #AUTH_USER_MODEL = 'tasktake2.CustomUser'
@@ -78,7 +76,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'topictake3',
         'USER': 'postgres',
-        'PASSWORD': 'bal0nk@',  # здесь данные пофиксятся
+        'PASSWORD': 'adfk',  # здесь данные пофиксятся
         'HOST': '127.0.0.1',
         'PORT': '5432'
     }
