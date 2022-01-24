@@ -78,7 +78,11 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'topictake3',
         'USER': 'postgres',
-        'PASSWORD': 'bal0nk@',
+<<<<<<< HEAD
+        'PASSWORD': 'sadfa',
+=======
+        'PASSWORD': 'sadfa',  # здесь данные пофиксятся
+>>>>>>> a64ae7528b1213f74cb396d0a83bd0cf072e91a9
         'HOST': '127.0.0.1',
         'PORT': '5432'
     }
