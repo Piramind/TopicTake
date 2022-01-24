@@ -33,10 +33,11 @@ INSTALLED_APPS = [
     'dj_rest_auth.registration',
     'rest_framework',
     'rest_framework.authtoken',
-    'jwt'
+    'jwt',
+    'tasktake2'
 ]
 
-#AUTH_USER_MODEL = 'tasktake2.CustomUser'
+AUTH_USER_MODEL = 'tasktake2.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -77,7 +78,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'topictake3',
         'USER': 'postgres',
-        'PASSWORD': 'bal0nk@',  # здесь данные пофиксятся
+        'PASSWORD': 'bal0nk@',
         'HOST': '127.0.0.1',
         'PORT': '5432'
     }
