@@ -1,9 +1,11 @@
 from django.contrib import admin
-from .models import Lesson
+from .models import StudyGroup, User, Discipline, Topic, Lesson, StudentOnTheLesson
 
-#admin.site.register(StudyGroup)
-#admin.site.register(Discipline)
-#admin.site.register(Topic)
+
+admin.site.register(StudyGroup)
+admin.site.register(User)
+admin.site.register(Discipline)
+admin.site.register(Topic)
 admin.site.register(Lesson)
-#admin.site.register(StudentOnTheLesson)
+admin.site.register(StudentOnTheLesson)
 # Register your models here.

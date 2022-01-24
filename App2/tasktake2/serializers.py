@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Lesson
+from .models import StudyGroup, User, Discipline, Topic, Lesson, StudentOnTheLesson
 
 class LessonListSerializer(serializers.ModelSerializer):
 	class Meta:
