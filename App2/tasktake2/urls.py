@@ -1,6 +1,6 @@
 from django.urls import include, path
+from .views import LessonListView
 
 urlpatterns = [
-    path('users/', include('users.urls')),
-    path('rest-auth/', include('rest_auth.urls')),
+    path('lessons/', LessonListView.as_view())
 ]
