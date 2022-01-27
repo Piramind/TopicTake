@@ -4,12 +4,24 @@ from rest_framework.views import APIView
 
 from .models import StudyGroup, User, Discipline, Topic, Lesson, StudentOnTheLesson
 from .serializers import LessonListSerializer, StudentListSerializer, ReportListSerializer
+from django.views.generic import DetailView, ListView, UpdateView, CreateView, DeleteView
+from .forms import StudentOnTheLessonForm
 
+
+def create_SOTL(request):
+    data = {}
+
+    form = StudentOnTheLessonForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+
+    data['form'] = form
+    return render(request, 'create_sotl.html', data)
 
 class LessonListView(APIView):
 
 	def get(self, request):
-		lessons = Lesson.objects.filter(draft=False)
+		lessons = Lesson.objects.all()
 		serializer = LessonListSerializer(lessons, many=true)
 		return Response(serializer.data)
 
