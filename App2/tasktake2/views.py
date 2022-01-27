@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .models import StudyGroup, User, Discipline, Topic, Lesson, StudentOnTheLesson
-from .serializers import LessonListSerializer, LessonStudentListSerializer
+from .serializers import LessonListSerializer, StudentListSerializer, ReportListSerializer
 
 
 class LessonListView(APIView):
@@ -18,5 +18,17 @@ class StudentsIView(APIView):
 	def get(self, request, pk):
 		studento_ids = list(StudentOnTheLesson.objects.filter(lesson=pk).values_list("student", flat=True))
 		people = User.objects.filter(id__in=studento_ids)
-		serializer = LessonStudentListSerializer(people, many=True)
+		serializer = StudentListSerializer(people, many=True)
 		return Response(serializer.data)
+
+class GroupPairsView(APIView):
+	def get(self, request, pk):
+		group_lessons = Lesson.objects.filter(lesson_group=pk)
+		serializer = LessonListSerializer(group_lessons, many=True)
+		return Response(serializer.data)
+
+class ReportView(APIView):
+	def get(self, request, pk):
+	    reports = StudentOnTheLesson.objects.filter(student=pk)
+	    serializer = ReportListSerializer(reports, many=True)
+	    return Response(serializer.data)

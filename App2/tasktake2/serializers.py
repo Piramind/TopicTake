@@ -8,7 +8,13 @@ class LessonListSerializer(serializers.ModelSerializer):
 		fields = "__all__"
 
 
-class LessonStudentListSerializer(serializers.ModelSerializer):
+class StudentListSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = User
+		fields = "__all__"
+
+
+class ReportListSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = StudentOnTheLesson
 		fields = "__all__"

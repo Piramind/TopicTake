@@ -43,7 +43,7 @@ class Lesson(models.Model):                                                     
     lesson_topics = models.ManyToManyField(Topic, through="StudentOnTheLesson")
 
     def __str__(self):
-        return f"{self.lesson_group} {self.lesson_date}"
+        return f"{self.lesson_group} {self.lesson_discipline} {self.lesson_date}"
 
 
 class StudentOnTheLesson(models.Model):
@@ -55,5 +55,5 @@ class StudentOnTheLesson(models.Model):
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.group} {self.student} {self.topic} {self.lesson.lesson_date}"
+        return f"{self.group} {self.student} {self.discipline} {self.topic} {self.lesson.lesson_date}"
 
