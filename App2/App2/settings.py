@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'dj_rest_auth',
     'dj_rest_auth.registration',
     'rest_framework',
     'rest_framework.authtoken',
@@ -76,9 +77,9 @@ WSGI_APPLICATION = 'App2.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'topictake6',
+        'NAME': 'topictake7',
         'USER': 'postgres',
-       #'PASSWORD': 'aaa',  # здесь данные пофиксятся
+        'PASSWORD': 'aaa',  # здесь данные пофиксятся
         'HOST': '127.0.0.1',
         'PORT': '5432'
     }

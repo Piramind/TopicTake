@@ -5,18 +5,11 @@ from .models import StudyGroup, User, Discipline, Topic, Lesson, StudentOnTheLes
 admin.site.register(StudyGroup)
 admin.site.register(User)
 class UserAdmin(admin.ModelAdmin):
-    list_filter = ('user_first_name', 'user_last_name', 'group_name')
-    fieldsets = (
-        (None, {
-            'fields': ('','', 'id')
-        }),
-        ('', {
-            'fields': ('', '')
-        }),
-    )
+    fields = ('first_name', 'last_name', 'group_name')
+
 admin.site.register(Discipline)
 class DisciplineAdmin(admin.ModelAdmin):
-    list_filter = ('', '')
+    pass
 
 admin.site.register(Topic)
 class TopicAdmin(admin.ModelAdmin):
