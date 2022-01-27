@@ -1,6 +1,3 @@
-from typing_extensions import Required
-from coreapi import Field
-from django.db import models
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
@@ -15,12 +12,10 @@ class StudyGroup(models.Model):
 
 class User(AbstractUser):
     user_group = models.ForeignKey(StudyGroup, on_delete=models.CASCADE, null=True, blank=True) 
-
-    REQUIRED_FIELDS = ['user_first_name', 'user_last_name']
-
     
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
+        return f"{self.username}"
+
 
 
 class Discipline(models.Model):
