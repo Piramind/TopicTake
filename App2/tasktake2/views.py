@@ -55,13 +55,13 @@ def pupils_list(request):
     List all code students, or create a new report instance.
     """
     if request.method == 'GET':
-        pupils = StudentOnTheLesson.objects.all()
+        pupils = StudentOnTheLesson.objects.filter(student=request.user)
         serializer = ReportSerializer(pupils, many=True)
         return JsonResponse(serializer.data, safe=False)
 
     elif request.method == 'POST':
         data = JSONParser().parse(request)
-        serializer = ReportSerializer(data=data)
+        serializer = ReportSerializer(data=data, student=request.user)
         if serializer.is_valid():
             serializer.save()
             return JsonResponse(serializer.data, status=201)
