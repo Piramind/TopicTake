@@ -1,9 +1,12 @@
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.parsers import JSONParser
+from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse, JsonResponse
 
 from .models import StudyGroup, User, Discipline, Topic, Lesson, StudentOnTheLesson
-from .serializers import LessonListSerializer, StudentListSerializer, ReportListSerializer
+from .serializers import LessonListSerializer, StudentListSerializer, ReportListSerializer, ReportSerializer
 from django.views.generic import DetailView, ListView, UpdateView, CreateView, DeleteView
 from .forms import StudentOnTheLessonForm
 
@@ -44,3 +47,22 @@ class ReportView(APIView):
 	    reports = StudentOnTheLesson.objects.filter(student=pk)
 	    serializer = ReportListSerializer(reports, many=True)
 	    return Response(serializer.data)
+
+
+@csrf_exempt
+def pupils_list(request):
+    """
+    List all code students, or create a new report instance.
+    """
+    if request.method == 'GET':
+        pupils = StudentOnTheLesson.objects.all()
+        serializer = ReportSerializer(pupils, many=True)
+        return JsonResponse(serializer.data, safe=False)
+
+    elif request.method == 'POST':
+        data = JSONParser().parse(request)
+        serializer = ReportSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, status=201)
+        return JsonResponse(serializer.errors, status=400)

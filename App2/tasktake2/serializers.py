@@ -18,3 +18,9 @@ class ReportListSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = StudentOnTheLesson
 		fields = "__all__"
+
+
+class ReportSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = StudentOnTheLesson
+		fields = "__all__"
