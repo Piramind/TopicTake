@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.parsers import JSONParser
@@ -9,19 +9,12 @@ from rest_framework.decorators import action
 
 from .models import StudyGroup, User, Discipline, Topic, Lesson, StudentOnTheLesson
 from .serializers import LessonSerializer, StudentSerializer, ReportSerializer, ReportSerializer, StudentGroupSerializer
-from django.views.generic import DetailView, ListView, UpdateView, CreateView, DeleteView
-from .forms import StudentOnTheLessonForm
+from django.views.generic import DetailView, ListView, UpdateView
+from django.views.generic.edit import CreateView
+from .forms import ReportForm
 
 
-def create_SOTL(request):
-	data = {}
 
-	form = StudentOnTheLessonForm(request.POST or None)
-	if form.is_valid():
-		form.save()
-
-	data['form'] = form
-	return render(request, 'create_sotl.html', data)
 
 class LessonListView(APIView):
 
@@ -45,8 +38,8 @@ class GroupPairsView(APIView):
 		return Response(serializer.data)
 
 class ReportView(APIView):
-	def get(self, request, pk):
-		reports = StudentOnTheLesson.objects.filter(student=pk)
+	def get(self, request):
+		reports = StudentOnTheLesson.objects.filter(student=request.user)
 		serializer = ReportSerializer(reports, many=True)
 		return Response(serializer.data)
 
@@ -62,8 +55,7 @@ def pupils_list(request):
 		return JsonResponse(serializer.data, safe=False)
 
 	elif request.method == 'POST':
-		data = JSONParser().parse(request)
-		serializer = ReportSerializer(data=data, student=request.user)
+		serializer = ReportSerializer(data=request.data)
 		if serializer.is_valid():
 			serializer.save()
 			return JsonResponse(serializer.data, status=201)
@@ -107,3 +99,16 @@ class GroupViewSet(viewsets.ViewSet):
 		serializer = StudentSerializer(group_students, many=True)
 		return Response(serializer.data)
 
+
+class AddReport(CreateView):
+	model = StudentOnTheLesson
+	form_class = ReportForm
+	template_name = "create_sotl.html"
+
+	def form_valid(self, form):
+		form.instance.student  = self.request.user
+		form.save()
+		return redirect("/")
+
+	def success_url(self):
+		redirect("student/pupils_list/")
