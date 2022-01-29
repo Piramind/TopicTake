@@ -10,7 +10,7 @@ from rest_framework.generics import RetrieveDestroyAPIView, DestroyAPIView
 from rest_framework.permissions import IsAuthenticated
 
 from .models import StudyGroup, User, Discipline, Topic, Lesson, StudentOnTheLesson
-from .serializers import LessonSerializer, StudentSerializer, ReportSerializer, ReportSerializer, StudentGroupSerializer
+from .serializers import LessonSerializer, StudentSerializer, ReportSerializer, ReportSerializer, StudentGroupSerializer, DisciplineSer, StudyGroupSer, TopicSer
 from django.views.generic import DetailView, ListView, UpdateView
 from django.views.generic.edit import CreateView
 from .forms import ReportForm
