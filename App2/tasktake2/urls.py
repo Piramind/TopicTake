@@ -1,5 +1,5 @@
 from django.urls import include, path
-from .views import LessonListView, StudentsIView, GroupPairsView, ReportView, ReportCreateView, StudentGroupsView, ReportDeleteView
+from .views import LessonListView, StudentsIView, GroupPairsView, ReportView, ReportCreateView, StudentGroupsView, ReportDeleteView, StudentTimetable
 from rest_framework.routers import DefaultRouter
 
 #router = DefaultRouter()
@@ -25,6 +25,7 @@ urlpatterns = [
     path('groups/<int:pk>', GroupPairsView.as_view()),
     path('students/my_reports', ReportView.as_view()),
     path('students/create_report/', ReportCreateView.as_view()),
-    path('students/delete_report/<int:pk>', ReportDeleteView.as_view())
+    path('students/delete_report/<int:pk>', ReportDeleteView.as_view()),
+    path('students/timetable', StudentTimetable.as_view())
 
 ]

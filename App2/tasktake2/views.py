@@ -48,6 +48,14 @@ class StudentGroupsView(APIView):
 		serializer = StudentGroupSerializer(groups, many=True)
 		return Response(serializer.data)
 
+class StudentTimetable(APIView):
+	'''Shows timetable of student group'''
+	def get(self, request):
+		group = list(User.objects.filter(id=request.user.id).values_list("user_group", flat=True))
+		lessons = Lesson.objects.filter(lesson_group__in=group)
+		serializer = LessonSerializer(lessons, many=True)
+		return Response(serializer.data)
+
 class ReportView(APIView):
 	'''Reports of the student'''
 	def get(self, request):
