@@ -6,6 +6,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, JsonResponse
 from rest_framework import viewsets
 from rest_framework.decorators import action
+from rest_framework.generics import RetrieveDestroyAPIView, DestroyAPIView
+from rest_framework.permissions import IsAuthenticated
 
 from .models import StudyGroup, User, Discipline, Topic, Lesson, StudentOnTheLesson
 from .serializers import LessonSerializer, StudentSerializer, ReportSerializer, ReportSerializer, StudentGroupSerializer
@@ -62,3 +64,10 @@ class ReportCreateView(APIView):
 			report_saved = serializer.save(student=request.user)
 		return Response({"Success": "Report created successfuly"})
 
+class ReportDeleteView(RetrieveDestroyAPIView):
+	'''Deletes report'''
+	queryset = StudentOnTheLesson.objects.all()
+	serializer_class = ReportSerializer
+
+	def get_queryset(self):
+		return StudentOnTheLesson.objects.filter(student=self.request.user)

@@ -25,7 +25,3 @@ class StudentGroupSerializer(serializers.ModelSerializer):
 		model = StudyGroup
 		fields = "__all__"
 
-class ReportCreateSerializer(serializers.ModelSerializer):
-	class Meta:
-		model = StudyGroup
-		fields = "__all__"
