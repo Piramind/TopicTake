@@ -129,4 +129,5 @@ dmypy.json
 .pyre/
 
 
-App/App/settings.py
+App2/tasktake2/migrations/
+
